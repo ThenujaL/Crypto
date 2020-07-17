@@ -1,22 +1,27 @@
 
 import java.util.*;
 
-//continue with the groupify method, find out a way to split the letter up into groups.
+//write the Caesar Cipher method.
 
 public class Crypto {
 
     public static void main (String[] args){
 
-
-        String n = normalizeText("Happy   @*(!&#@!(*     Daysg&#%#");
-        String grouped = Groupify(n, 2);
-        System.out.println(grouped);
+        String toEncrypt = encryptString("Happy   @*(!&#@!(*     Daysgd&#%#", 2, 2);
+        System.out.println(toEncrypt);
 
        // String b = shiftAlphabet(2);
         //System.out.println(b);
 
 
 
+    }
+
+    public static String encryptString(String input, int ShiftValue, int groupSize){
+        String n = normalizeText(input);
+        n = Groupify(n,groupSize);
+        System.out.println(n);
+        return n;
     }
 
     public static String normalizeText(String n){
