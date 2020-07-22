@@ -3,25 +3,40 @@ import java.util.*;
 
 //write the Caesar Cipher method.
 
+/*for the cypher, start by taking the shifted alphabet from the
+given function. Then get the corresponding indexes of the alphabet.
+Then save the new string in a variable
+ */
+
 public class Crypto {
 
     public static void main (String[] args){
 
-        String toEncrypt = encryptString("Happy   @*(!&#@!(*     Daysgd&#%#", 2, 2);
+        String toEncrypt = encryptString("T&H((ENUJA", 1, 2);
         System.out.println(toEncrypt);
-
-       // String b = shiftAlphabet(2);
-        //System.out.println(b);
-
-
 
     }
 
     public static String encryptString(String input, int ShiftValue, int groupSize){
         String n = normalizeText(input);
+        n = caesarfy(n, ShiftValue);
         n = Groupify(n,groupSize);
-        System.out.println(n);
         return n;
+    }
+
+    public static String caesarfy(String input, int ShiftValue){ //work on getting the indexes and extracting the letters
+            String Cyph = "";
+            String shiftedPhrase = "";
+            String normalAlphabet = shiftAlphabet(0);
+            String ShiftedAplhabet = shiftAlphabet(ShiftValue);
+
+        for (int i = 0; i < input.length(); i++){
+            Cyph = input.substring(i, i + 1);
+            int index = normalAlphabet.indexOf(Cyph);
+            String shiftedLetter = ShiftedAplhabet.substring(index, index + 1);
+            shiftedPhrase = shiftedPhrase + shiftedLetter;
+        }
+        return shiftedPhrase;
     }
 
     public static String normalizeText(String n){
@@ -30,7 +45,6 @@ public class Crypto {
         String withoutPunct = withoutSpaces.replaceAll("\\p{P}", "");
         String allUppercase = withoutPunct.toUpperCase();
         n = allUppercase;
-        System.out.println(n);
         return n;
     }
 
